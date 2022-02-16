@@ -1,0 +1,48 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsdx build --format umd --name index",
+    "build:watch": "tsdx watch --format umd --name index",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "start:watch": "web-dev-server --watch --app-index test-e2e/index.html --open",
+    "dev": "npm-run-all --parallel build:watch start:watch"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "name": "zea-web-component",
+  "author": "Philip Taylor",
+  "module": "dist/zea-web-component.esm.js",
+  "devDependencies": {
+    "@web/dev-server": "^0.1.29",
+    "husky": "^7.0.4",
+    "npm-run-all": "^4.1.5",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@zeainc/zea-engine": "^4.2.0",
+    "@zeainc/zea-tree-view": "^0.0.7",
+    "@zeainc/zea-ux": "^4.0.4"
+  }
+}
