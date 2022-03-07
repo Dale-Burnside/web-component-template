@@ -3,7 +3,6 @@ import {
   CADAssembly,
   CADAsset,
   CADPart,
-  Camera,
   Color,
   EnvMap,
   GLRenderer,
@@ -118,20 +117,7 @@ class ZeaWebComponent extends HTMLElement {
     context.units = 'Millimeters'
 
     cadAsset.load(url, context).then(() => {
-      const path = ['.', '1', 'MOTOR_HOUSING']
-
-      try {
-        const item = <TreeItem>cadAsset.resolvePath(path)
-        item.addHighlight('bar', new Color(0.2, 0.2, 0.8, 0.1), true)
-
-        item.on('pointerMove', (event: ZeaPointerEvent) => {
-          console.log('PointerMoved on item')
-          event.stopPropagation()
-        })
-      } catch (e) {}
-
       this.renderer.frameAll()
-      console.log('loaded')
     })
 
     this.scene.getRoot().addChild(cadAsset)
