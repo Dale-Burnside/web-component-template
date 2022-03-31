@@ -6,9 +6,44 @@ This is a template project to facilitate quickly setting up a custom web compone
 
 https://developer.mozilla.org/en-US/docs/Web/Web_Components
 
-## TSDX User Guide
+Web components enable embedding custom functionality directly into the DOM tree by specifying the custom element name.
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+
+## Customizing the Zea Web Component
+
+This template provides a simple starting point for building your own embedable component that you can integrate into existing applications.
+
+Once the code for the custom element has been inported into your project, the tags in the domce tree
+
+```html
+<main class="flex flex-1 h-full">
+  <zea-web-component
+    id="zea-web-component"
+    class="h-full w-full"
+  ></zea-web-component>
+</main>
+```
+
+JavaScript code can then get a handle to the web component, and can then invoke methods directly on the web component. 
+> The Web Component runs in the same JavaScript context as the host page, so there is no need for message passing system that are typically required when working with iFrames. This makes code development and debugging a lot easier. 
+> 
+```javascript
+const $wc = document.getElementById('zea-web-component')
+```
+
+```javascript
+$wc.loadAsset('data/Dead_eye_bearing.stp.zcad')
+```
+
+```javascript
+$wc.frameView()
+```
+
+# Build System
+
+The Zea Web Component is built using TSDX and TypeScript.
+
+## TSDX User Guide
 
 > This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
 
@@ -33,29 +68,6 @@ To run tests, use `npm test` or `yarn test`.
 ### Configuration
 
 Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-#### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-#### Bundle Analysis
-
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
-
-##### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
 
 #### Rollup
 
